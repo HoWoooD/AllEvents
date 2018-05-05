@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Algys on 04.05.2018.
+ * Created by Algys Buldakov on 04.05.2018.
  */
 
 public class main_activity extends Activity {
