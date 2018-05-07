@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Algys on 04.05.2018.
+ * Created by Algys on 07.05.2018.
  */
 
-public class main_activity extends Activity {
-
+public class MainActivity extends Activity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
