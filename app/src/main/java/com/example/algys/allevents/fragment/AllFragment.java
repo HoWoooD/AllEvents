@@ -14,19 +14,23 @@ import com.example.algys.allevents.R;
 import com.example.algys.allevents.adapter.EventsListAdapter;
 import com.example.algys.allevents.dto.EventsDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllFragment extends AbstractTabFragment {
 
     private static final int LAYOUT = R.layout.fragment_all;
 
-    public static AllFragment getInstance(Context context){
+    private List<EventsDTO> data;
+    private EventsListAdapter adapter;
+
+    public static AllFragment getInstance(Context context, List<EventsDTO> data){
         Bundle args = new Bundle();
         AllFragment fragment = new AllFragment();
         fragment.setArguments(args);
+        fragment.setData(data);
         fragment.setContext(context);
         fragment.setTitle(context.getString(R.string.tab_item_all));
+
         return fragment;
     }
 
@@ -37,27 +41,24 @@ public class AllFragment extends AbstractTabFragment {
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.recycleView);
         rv.setLayoutManager(new LinearLayoutManager(context));
-        rv.setAdapter(new EventsListAdapter(createMockEventsListData()));
+        adapter = new EventsListAdapter(data);
+        rv.setAdapter(adapter);
 
         return view;
-    }
-
-    private List<EventsDTO> createMockEventsListData() {
-        List<EventsDTO> data = new ArrayList<>();
-        data.add(new EventsDTO("Item 1"));
-        data.add(new EventsDTO("Item 2"));
-        data.add(new EventsDTO("Item 3"));
-        data.add(new EventsDTO("Item 4"));
-        data.add(new EventsDTO("Item 5"));
-        data.add(new EventsDTO("Item 6"));
-
-        return data;
     }
 
     public void setContext(Context context) {
         this.context = context;
     }
 
+    public void setData(List<EventsDTO> data) {
+        this.data = data;
+    }
+
+    public void refreshData(List<EventsDTO> data){
+        adapter.setData(data);
+        adapter.notifyDataSetChanged();
+    }
 }
 
 

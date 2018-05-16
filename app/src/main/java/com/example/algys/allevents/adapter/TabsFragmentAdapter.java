@@ -7,13 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.algys.allevents.dto.EventsDTO;
 import com.example.algys.allevents.fragment.AbstractTabFragment;
 import com.example.algys.allevents.fragment.AllFragment;
 import com.example.algys.allevents.fragment.CategoryFragment;
 import com.example.algys.allevents.fragment.PopularFragment;
 import com.example.algys.allevents.fragment.TodayFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TabsFragmentAdapter extends FragmentPagerAdapter{
@@ -21,9 +24,14 @@ public class TabsFragmentAdapter extends FragmentPagerAdapter{
     private Map<Integer, AbstractTabFragment> tabs;
     private Context context;
 
+    private AllFragment allFragment;
+
+    private List<EventsDTO> data;
+
     public TabsFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
+        this.data = new ArrayList<>();
         initTabsMap(context);
     }
 
@@ -45,10 +53,17 @@ public class TabsFragmentAdapter extends FragmentPagerAdapter{
     }
 
     private void initTabsMap(Context context) {
+        allFragment = AllFragment.getInstance(context, data);
+
         tabs = new HashMap<>();
-        tabs.put(0, AllFragment.getInstance(context));
+        tabs.put(0, allFragment);
         tabs.put(1, TodayFragment.getInstance(context));
         tabs.put(2, PopularFragment.getInstance(context));
         tabs.put(3, CategoryFragment.getInstance(context));
+    }
+
+    public void setData(List<EventsDTO> data) {
+        this.data = data;
+        allFragment.refreshData(data);
     }
 }

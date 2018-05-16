@@ -49,4 +49,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             title = (TextView) itemView.findViewById(R.id.title);
         }
     }
+
+    public void setData(List<EventsDTO> data) {
+        this.data = data;
+    }
 }
