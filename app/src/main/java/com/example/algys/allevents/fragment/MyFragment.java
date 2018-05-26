@@ -4,23 +4,22 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.algys.allevents.R;
 
-public class CategoryFragment extends AbstractTabFragment {
+public class MyFragment extends AbstractTabFragment {
 
-    private static final int LAYOUT = R.layout.fragment_example;
+    private static final int LAYOUT = R.layout.fragment_my;
 
-    public static CategoryFragment getInstance(Context context){
+    public static MyFragment getInstance(Context context){
         Bundle args = new Bundle();
-        CategoryFragment fragment = new CategoryFragment();
+        MyFragment fragment = new MyFragment();
         fragment.setArguments(args);
         fragment.setContext(context);
-        fragment.setTitle(context.getString(R.string.tab_item_category));
+        fragment.setTitle(context.getString(R.string.tab_item_my));
         return fragment;
     }
 

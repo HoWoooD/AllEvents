@@ -10,16 +10,16 @@ import android.view.ViewGroup;
 
 import com.example.algys.allevents.R;
 
-public class PopularFragment extends AbstractTabFragment {
+public class TomorrowFragment extends AbstractTabFragment {
 
-    private static final int LAYOUT = R.layout.fragment_example;
+    private static final int LAYOUT = R.layout.fragment_all;
 
-    public static PopularFragment getInstance(Context context){
+    public static TomorrowFragment getInstance(Context context){
         Bundle args = new Bundle();
-        PopularFragment fragment = new PopularFragment();
+        TomorrowFragment fragment = new TomorrowFragment();
         fragment.setArguments(args);
         fragment.setContext(context);
-        fragment.setTitle(context.getString(R.string.tab_item_popular));
+        fragment.setTitle(context.getString(R.string.tab_item_tomorrow));
         return fragment;
     }
 

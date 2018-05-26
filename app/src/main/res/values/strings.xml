@@ -1,15 +1,23 @@
 <resources>
-    <string name="app_name">AllEvents Beta</string>
+    <string name="app_name">AllEvents Alpha</string>
     <string name="search_title">Search</string>
 
-    <string name="menu_item_notification">Напоминания</string>
+    <string name="menu_item_setting">Настройки</string>
+    <string name="menu_item_help">Помощь</string>
+    <string name="menu_item_info">Справка</string>
+
+    <string name="content_activity_settings">Выбор языка</string>
+    <string name="content_activity_help">Подсказка 1</string>
+    <string name="content_activity_info">Программа была разработа в рамках выпускной квалификационной работы студентом СВФУ</string>
 
     <string name="view_navigation_open">Open</string>
     <string name="view_navigation_close">Close</string>
 
-    <string name="tab_item_all">All</string>
-    <string name="tab_item_today">Today</string>
-    <string name="tab_item_popular">Popular</string>
-    <string name="tab_item_category">Category</string>
+    <string name="tab_item_today">Сегодня</string>
+    <string name="tab_item_tomorrow">Завтра</string>
+    <string name="tab_item_all">Все</string>
+    <string name="tab_item_my">Мои</string>
 
+    <string name="contentDescription">TODO</string>
+    <string name="product_version">Версия: 0.0.1</string>
 </resources>

@@ -12,7 +12,7 @@ import com.example.algys.allevents.R;
 
 public class TodayFragment extends AbstractTabFragment {
 
-    private static final int LAYOUT = R.layout.fragment_example;
+    private static final int LAYOUT = R.layout.fragment_all;
 
     public static TodayFragment getInstance(Context context){
         Bundle args = new Bundle();

@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.algys.allevents.dto.EventsDTO;
 import com.example.algys.allevents.fragment.AbstractTabFragment;
 import com.example.algys.allevents.fragment.AllFragment;
-import com.example.algys.allevents.fragment.CategoryFragment;
-import com.example.algys.allevents.fragment.PopularFragment;
+import com.example.algys.allevents.fragment.TomorrowFragment;
+import com.example.algys.allevents.fragment.MyFragment;
 import com.example.algys.allevents.fragment.TodayFragment;
 
 import java.util.ArrayList;
@@ -57,9 +57,9 @@ public class TabsFragmentAdapter extends FragmentPagerAdapter{
 
         tabs = new HashMap<>();
         tabs.put(0, allFragment);
-        tabs.put(1, TodayFragment.getInstance(context));
-        tabs.put(2, PopularFragment.getInstance(context));
-        tabs.put(3, CategoryFragment.getInstance(context));
+        tabs.put(1, TomorrowFragment.getInstance(context));
+        tabs.put(2, TodayFragment.getInstance(context));
+        tabs.put(3, MyFragment.getInstance(context));
     }
 
     public void setData(List<EventsDTO> data) {

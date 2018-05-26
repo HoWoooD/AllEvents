@@ -1,20 +1,26 @@
 package com.example.algys.allevents;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.algys.allevents.adapter.TabsFragmentAdapter;
 import com.example.algys.allevents.dto.EventsDTO;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
     private static final int LAYOUT = R.layout.activity_main;
 
     private Toolbar toolbar;
+    private Drawer.Result drawerResult;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
 
@@ -68,29 +75,69 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    private void initNavigationView() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.view_navigation_open, R.string.view_navigation_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                drawerLayout.closeDrawers();
-                switch (menuItem.getItemId()){
-                    case R.id.actionNotificationItem:
-                        showNotificationTab();
-                }
-                return true;
-            }
-        });
+    @Override
+    public void onBackPressed() {
+        if (drawerResult != null && drawerResult.isDrawerOpen()){
+            drawerResult.closeDrawer();
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 
-    private void showNotificationTab() {
-        viewPager.setCurrentItem(Constants.TAB_TWO);
+    private void initNavigationView() {
+        AccountHeader.Result accountHeader = createAccountHeader();
+
+        drawerResult = new Drawer()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .withDisplayBelowToolbar(true)
+                .withActionBarDrawerToggleAnimated(true)
+                .withAccountHeader(accountHeader)
+                .addDrawerItems(
+                        new SecondaryDrawerItem()
+                        .withName(R.string.menu_item_setting)
+                        .withIdentifier(1)
+                        .withIcon(R.mipmap.ic_settings),
+                        new SecondaryDrawerItem()
+                        .withName(R.string.menu_item_help)
+                        .withIdentifier(2)
+                        .withIcon(R.mipmap.ic_help_circle_outline),
+                        new SecondaryDrawerItem()
+                        .withName(R.string.menu_item_info)
+                        .withIdentifier(3)
+                        .withIcon(R.mipmap.ic_information_outline)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                        switch (drawerItem.getIdentifier()) {
+                            case 1:
+                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                                break;
+                            case 2:
+                                startActivity(new Intent(MainActivity.this, HelpActivity.class));
+                                break;
+                            case 3:
+                                startActivity(new Intent(MainActivity.this, InfoActivity.class));
+                                break;
+                        }
+                    }
+                })
+                .build();
+
+    }
+
+    private AccountHeader.Result createAccountHeader() {
+        IProfile profile = new ProfileDrawerItem()
+                .withName("Algys")
+                .withEmail("al_buldak@mail.ru");
+
+        return new AccountHeader()
+                    .withActivity(this)
+                    .withHeaderBackground(R.drawable.background_material)
+                .addProfiles(profile)
+                    .build();
     }
 
     private class AllEventsTask extends AsyncTask<Void, Void, EventsDTO>{
@@ -99,8 +146,9 @@ public class MainActivity extends AppCompatActivity{
         protected EventsDTO doInBackground(Void... voids) {
             RestTemplate template = new RestTemplate();
             template.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-            return template.getForObject(Constants.URL.GET_EVENTS_ITEM, EventsDTO.class);
+            EventsDTO datat = new EventsDTO();
+            return datat;
+            //return template.getForObject(Constants.URL.GET_EVENTS_ITEM , EventsDTO.class);
         }
 
         @Override
