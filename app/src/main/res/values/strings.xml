@@ -2,6 +2,7 @@
     <string name="app_name">AllEvents Alpha</string>
     <string name="search_title">Search</string>
 
+    <string name="menu_item_profile">Профиль</string>
     <string name="menu_item_setting">Настройки</string>
     <string name="menu_item_help">Помощь</string>
     <string name="menu_item_info">Справка</string>
@@ -20,4 +21,7 @@
 
     <string name="contentDescription">TODO</string>
     <string name="product_version">Версия: 0.0.1</string>
+
+    <string name="facebook_app_id">1042010052623502</string>
+    <string name="fb_login_protocol_scheme">fb1042010052623502</string>
 </resources>

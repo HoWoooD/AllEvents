@@ -96,16 +96,20 @@ public class MainActivity extends AppCompatActivity{
                 .withAccountHeader(accountHeader)
                 .addDrawerItems(
                         new SecondaryDrawerItem()
-                        .withName(R.string.menu_item_setting)
+                        .withName(R.string.menu_item_profile)
                         .withIdentifier(1)
+                        .withIcon(R.drawable.account),
+                        new SecondaryDrawerItem()
+                        .withName(R.string.menu_item_setting)
+                        .withIdentifier(2)
                         .withIcon(R.mipmap.ic_settings),
                         new SecondaryDrawerItem()
                         .withName(R.string.menu_item_help)
-                        .withIdentifier(2)
+                        .withIdentifier(3)
                         .withIcon(R.mipmap.ic_help_circle_outline),
                         new SecondaryDrawerItem()
                         .withName(R.string.menu_item_info)
-                        .withIdentifier(3)
+                        .withIdentifier(4)
                         .withIcon(R.mipmap.ic_information_outline)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -113,12 +117,15 @@ public class MainActivity extends AppCompatActivity{
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         switch (drawerItem.getIdentifier()) {
                             case 1:
-                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                                 break;
                             case 2:
-                                startActivity(new Intent(MainActivity.this, HelpActivity.class));
+                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                                 break;
                             case 3:
+                                startActivity(new Intent(MainActivity.this, HelpActivity.class));
+                                break;
+                            case 4:
                                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
                                 break;
                         }
@@ -130,8 +137,7 @@ public class MainActivity extends AppCompatActivity{
 
     private AccountHeader.Result createAccountHeader() {
         IProfile profile = new ProfileDrawerItem()
-                .withName("Algys")
-                .withEmail("al_buldak@mail.ru");
+                .withEmail("Гость");
 
         return new AccountHeader()
                     .withActivity(this)

@@ -25,7 +25,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.view.ViewPager
+        <!--<android.support.v4.view.ViewPager
             android:id="@+id/help_viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,7 +37,19 @@
                 android:layout_height="wrap_content"
                 android:text="@string/content_activity_help"
                 android:textSize="24sp"/>
-        </android.support.v4.view.ViewPager>
+        </android.support.v4.view.ViewPager>-->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="hello"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
 
     </android.support.design.widget.CoordinatorLayout>
 

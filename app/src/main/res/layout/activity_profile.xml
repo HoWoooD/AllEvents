@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.algys.allevents.SettingActivity"
+    tools:context="com.example.algys.allevents.ProfileActivity"
     android:background="@color/mainBackground"
     android:fitsSystemWindows="true">
 
@@ -26,18 +27,12 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/setting_viewPager"
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <TextView
-                android:id="@+id/setting_textview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/content_activity_settings"
-                android:textSize="24sp"/>
-        </android.support.v4.view.ViewPager>
+
 
     </android.support.design.widget.CoordinatorLayout>
 
